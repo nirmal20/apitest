@@ -4,8 +4,9 @@ orbs:
 workflows:
   build:
     jobs:
+     
       - cypress/run:
-          yarn: true
-          start: yarn start
-          wait-on: 'http://localhost:8080'
-          no-workspace: true
+          requires:
+            - cypress/install
+          start: 'lerna run start --parallel'
+          install-command: 'npm install --no-optional --unsafe-perm'
