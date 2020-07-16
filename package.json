@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "mobiq",
   "main": "index.js",
-  "dependencies": {
-    "cypress": "^4.10.0"
+  "dependencies": {},
+  "devDependencies": {
+    "cypress": "4.9.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
