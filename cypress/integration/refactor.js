@@ -1,14 +1,6 @@
 /// <reference types = "cypress"/>
 
-context('tests for checking comments ', () => {
-
-    
-
-    // function validateEmail(email) {
-    //     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    //     return re.test(String(email).toLowerCase());
-    // }
-
+context('API Tests for Checking Format of Email in comments on Posts', () => {
 
     it('get user details', () => {
         cy.request('/users')
@@ -16,18 +8,18 @@ context('tests for checking comments ', () => {
             expect(response.status).to.eq(200);
             expect(response).to.have.property('headers')
             expect(response).to.have.property('duration')
-            //cy.log(response);
-            const body = response.body.find(function(e){
+            expect(response.body[0]).property('id').to.be.a('number');
+
+            const userDetails = response.body.find(function(e){
                 return e.username == "Delphine";
             });
-            console.log(body.id);
-            let idValue = body.id;
-            cy.wrap(body.id).as('userId')
+           // expect(userDetails).to.be.true;
+            cy.wrap(userDetails.id).as('userId')
         })
 
     })
 
-    it('get posts and validate comments' ,function () {
+    it('get All posts of particular userid' ,function () {
        // console.log(idValue);
         cy.request({
             url:'/posts',
@@ -44,7 +36,7 @@ context('tests for checking comments ', () => {
         });
     });    
 
-    it('get comments from each',function () {
+    it('get comments from each post and Validate Email Address',function () {
       
 
         cy.fixture('posts').then((posts) => {
