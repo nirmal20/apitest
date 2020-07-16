@@ -14,4 +14,4 @@ workflows:
           install-command: 'npm install --no-optional --unsafe-perm'
           post-steps:
             - store_artifacts:
-                path: mochawesome-report
+                path: 'mochawesome-report'
