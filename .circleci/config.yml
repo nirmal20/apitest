@@ -6,7 +6,7 @@ workflows:
     jobs:
       - cypress/install
       - cypress/run:
-          requires:
-            - cypress/install
+          #requires:
+         #   - cypress/install
           start: 'lerna run start --parallel'
           install-command: 'npm install --no-optional --unsafe-perm'
