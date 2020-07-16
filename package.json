@@ -1,0 +1,23 @@
+{
+  "name": "mobiq",
+  "version": "1.0.0",
+  "description": "mobiq",
+  "main": "index.js",
+  "dependencies": {
+    "cypress": "^4.10.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alwaysnirmal/mobiq.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alwaysnirmal/mobiq/issues"
+  },
+  "homepage": "https://github.com/alwaysnirmal/mobiq#readme"
+}
