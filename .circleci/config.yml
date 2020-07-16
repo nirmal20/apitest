@@ -6,6 +6,8 @@ workflows:
     jobs:
       - cypress/install
       - cypress/run:
+          name: Debug with Cypress CLI logs
+          debug: 'cypress:cli'
           #requires:
          #   - cypress/install
           start: 'lerna run start --parallel'
