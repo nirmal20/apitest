@@ -1,0 +1,140 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2020-07-16T21:41:32.901Z",
+    "end": "2020-07-16T21:41:33.481Z",
+    "duration": 580,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "2328a233-229d-49c8-910a-44778459d15d",
+      "title": "",
+      "fullFile": "cypress/integration/refactor.js",
+      "file": "cypress/integration/refactor.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "99aac73d-edac-49ca-9adc-d00fe3b968c8",
+          "title": "API Tests for Checking Format of Email in comments on Posts",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "get user details",
+              "fullTitle": "API Tests for Checking Format of Email in comments on Posts get user details",
+              "timedOut": null,
+              "duration": 106,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request('/users').then(function (response) {\n  expect(response.status).to.eq(200);\n  expect(response).to.have.property('headers');\n  expect(response).to.have.property('duration');\n  expect(response.body[0]).property('id').to.be.a('number');\n  var userDetails = response.body.find(function (e) {\n    return e.username == \"Delphine\";\n  }); // expect(userDetails).to.be.true;\n  cy.wrap(userDetails.id).as('userId');\n});",
+              "err": {},
+              "uuid": "ffdf566f-c060-439d-8a1d-41e9b5528f8e",
+              "parentUUID": "99aac73d-edac-49ca-9adc-d00fe3b968c8",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "get All posts of particular userid",
+              "fullTitle": "API Tests for Checking Format of Email in comments on Posts get All posts of particular userid",
+              "timedOut": null,
+              "duration": 56,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// console.log(idValue);\ncy.request({\n  url: '/posts',\n  qs: {\n    userId: this.userId\n  }\n}).then(function (response) {\n  expect(response.status).to.eq(200);\n  expect(response).to.have.property('headers');\n  expect(response).to.have.property('duration');\n  cy.writeFile('cypress/fixtures/posts.json', response.body);\n});",
+              "err": {},
+              "uuid": "d2dbeb82-07cf-4f7f-a97a-f23873828a65",
+              "parentUUID": "99aac73d-edac-49ca-9adc-d00fe3b968c8",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "get comments from each post and Validate Email Address",
+              "fullTitle": "API Tests for Checking Format of Email in comments on Posts get comments from each post and Validate Email Address",
+              "timedOut": null,
+              "duration": 397,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.fixture('posts').then(function (posts) {\n  cy.log(posts);\n  var _iterator = _createForOfIteratorHelper(posts),\n      _step;\n  try {\n    for (_iterator.s(); !(_step = _iterator.n()).done;) {\n      var i = _step.value;\n      console.log(i.id);\n      cy.request('/comments?postId=' + i.id).then(function (commentResponse) {\n        //console.log(commentResponse.body)\n        var commentsCount = Object.keys(commentResponse.body).length;\n        console.log(commentsCount);\n        for (var x = 0; x < commentsCount; x++) {\n          //  console.log(commentResponse.body[x].email);\n          cy.validateEmail(commentResponse.body[x].email).then(function (emailValidationResponse) {\n            expect(emailValidationResponse).to.be[\"true\"];\n          }); // expect(validateEmail(commentResponse.body[x].email)).to.be.true;\n          // var returnEmail = validateEmail(commentResponse.body[x].email);\n          // if(returnEmail == true)\n          //     console.log(\"Email Address \"+ commentResponse.body[x].email + \"is of Valid format\");\n          //  else{\n          //      console.log(\"Email Address \"+ commentResponse.body[x].email + \"is of NOT Valid format\");\n          //  }   \n        }\n      });\n    }\n  } catch (err) {\n    _iterator.e(err);\n  } finally {\n    _iterator.f();\n  }\n}); //    var length = Object.keys(this.postCount).length;\n//         for (var i=0;i<length;i++){\n//             cy.request('/comments?postID='+this.postCount[i])\n//             .then((commentResponse) => {\n//                 var commentsCount = Object.keys(commentResponse.body).length;\n//                     for(var x=0;x<commentsCount;x++){\n//                         console.log(commentResponse.body[x].email);\n//                         var returnEmail = validateEmail(commentResponse.body[x].email);\n//                         if(returnEmail == true)\n//                            console.log(\"Email Address \"+ commentResponse.body[x].email + \"is of Valid format\");\n//                     }           \n//             })\n//         }",
+              "err": {},
+              "uuid": "5518f0f3-9387-4df3-b37f-abe13201b709",
+              "parentUUID": "99aac73d-edac-49ca-9adc-d00fe3b968c8",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "ffdf566f-c060-439d-8a1d-41e9b5528f8e",
+            "d2dbeb82-07cf-4f7f-a97a-f23873828a65",
+            "5518f0f3-9387-4df3-b37f-abe13201b709"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 559,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.1.1"
+    },
+    "marge": {
+      "options": {
+        "charts": true
+      },
+      "version": "5.1.0"
+    }
+  }
+}
